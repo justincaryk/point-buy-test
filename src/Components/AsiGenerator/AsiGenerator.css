@@ -1,22 +1,24 @@
+.space-sequence-20 > * + * {
+    margin-top: 20px;
+}
+.space-sequence-20 > *:first-child {
+    margin-top: 0;
+}
+
 /* font stuff */
 .content-wrap .asi-heading {
-    font-weight: 700;
-    font-family: Roboto,Helvetica,sans-serif;
-    letter-spacing: -1px;
+    font-weight: 600;
+    font-family: Roboto,sans-serif;
     text-transform: uppercase;
-    
+    font-size: 15px;
 }
 
 .content-wrap .asi-points-val-total {
     font-size: 20px;
-    color: #242527;
+    color: #353535;
     font-weight: 600;
 }
 
-/* lazy top-margin */
-.mt-20 {
-    margin-top: 20px;
-}
 
 /* table row */
 .content-wrap .big-ole-table-outer {
@@ -35,4 +37,36 @@
 
 .asi-val-select-outer {
     margin-top: 10px;
+}
+
+
+
+/* attribute display blocks */
+.attr-block {
+    max-width: 100%;
+    border: solid 1px #ddd;
+}
+
+.attr-block .attr-title-bar {
+    background: #272727;
+    padding: 10px;
+    color: #efefef;
+}
+.attr-block .attr-content .attr-row {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-top: solid 1px #ddd;
+    line-height: 2;
+}
+
+.attr-block .attr-content .attr-row .label-left, .attr-block .attr-content .attr-row .score {
+    display: table-cell;
+    vertical-align: middle;
+}
+.attr-block .attr-content .attr-row .label-left {}
+.attr-block .attr-content .attr-row .score {
+    background: #FAF8F7;
+    font-weight: 700;
+    font-size: 22px;
 }
