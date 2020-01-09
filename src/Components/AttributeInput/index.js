@@ -26,28 +26,13 @@ class AttributeInputBlock extends React.Component {
     }
 
     render() {
-
-        let currentOptions;
-
-        // nothing is selected here, but other attributes have changed
-        if (_fullRebuildIsNeeded(this)) {
-            currentOptions = _rebuildAvailableOptions(this);
-        }
-        // something is selected here, but it isn't the highest and we might need to 
-        // add or delete options
-        else if (_moreOrLessOptionsMayBeRequired(this)) {
-            const name = this.props.attribute.name;
-            currentOptions = _addOrRemoveAvailableOptionsAtIndex(this);
-        }
-        // else keep as is.
-        else {
-            currentOptions = this.state.options;
-        }
+        
+        this.state.options = _addOrRemoveAvailableOptionsAtIndex(this);
 
         return (
             <div>
                 <select className="select-css"
-                    onChange={this.handleChange}>{currentOptions}</select>
+                    onChange={this.handleChange}>{this.state.options}</select>
             </div>
         )
 
@@ -60,38 +45,6 @@ export default AttributeInputBlock;
 
 // creating and modifying the options array
 function buildAvailableOptions(that) {
-    let availablePoints = that.props.availablePoints;
-    const pointCosts = that.props.pointCosts;
-    const pointDisplayVals = Object.keys(pointCosts);
-
-    let lastPointKey = 8;
-
-    const optionsArr = [];
-
-    for (const opt of pointDisplayVals) {
-        let optionHmtl;
-
-        if (Math.sign(availablePoints - pointCosts[lastPointKey]) != -1) {
-            optionHmtl = (
-                <option
-                    value={lastPointKey + '-' + that.props.attribute.id}
-                    key={lastPointKey}>{lastPointKey}</option>
-            );
-            optionsArr.push(optionHmtl);
-        }
-
-        lastPointKey++;
-    }
-
-    return optionsArr;
-}
-
-function _rebuildAvailableOptions(that) {
-
-    if (!that.state && that.state.hasValueSelected == false) {
-        return;
-    }
-
     let availablePoints = that.props.availablePoints;
     const pointCosts = that.props.pointCosts;
     const pointDisplayVals = Object.keys(pointCosts);
@@ -201,27 +154,4 @@ function _getIndexOfOptions(eventTargetVal, optionsInState) {
         }
 
     }
-}
-
-
-// basic validation funnels
-function _fullRebuildIsNeeded(that) {
-    if (that.props.availablePoints < 27 && that.state.hasValueSelected == false) {
-        return true;
-    }
-    return false;
-}
-
-function _moreOrLessOptionsMayBeRequired(that) {
-    
-    if (
-        that.state.hasValueSelected &&
-        that.state.indexOfOptionSelected < 7 &&
-        that.props.availablePoints < 27 &&
-        that.props.attribute.currentAssignedScore != 15
-    ) {
-        return true;
-    }
-
-    return false;
 }
