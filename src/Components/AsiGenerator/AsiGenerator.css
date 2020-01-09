@@ -1,0 +1,38 @@
+/* font stuff */
+.content-wrap .asi-heading {
+    font-weight: 700;
+    font-family: Roboto,Helvetica,sans-serif;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    
+}
+
+.content-wrap .asi-points-val-total {
+    font-size: 20px;
+    color: #242527;
+    font-weight: 600;
+}
+
+/* lazy top-margin */
+.mt-20 {
+    margin-top: 20px;
+}
+
+/* table row */
+.content-wrap .big-ole-table-outer {
+    display: table;
+    width: 100%;
+}
+
+.content-wrap .big-ole-table-outer .tbl-row {
+    display: table-row;
+}
+
+.content-wrap .big-ole-table-outer .tbl-row .tbl-cell {
+    display: table-cell;
+    padding: 0 10px;
+}
+
+.asi-val-select-outer {
+    margin-top: 10px;
+}
