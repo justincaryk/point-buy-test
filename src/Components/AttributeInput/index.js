@@ -33,11 +33,11 @@ class AttributeInputBlock extends React.Component {
         if (_fullRebuildIsNeeded(this)) {
             currentOptions = _rebuildAvailableOptions(this);
         }
-        // something is selected here, but it isn't the highest possible 
-        // and splicing more expensive options may be required
-        else if (_splicingMoreExpensiveOptionsMayBeRequired(this)) {
+        // something is selected here, but it isn't the highest and we might need to 
+        // add or delete options
+        else if (_moreOrLessOptionsMayBeRequired(this)) {
             const name = this.props.attribute.name;
-            currentOptions = _spliceAvailableOptions(this);
+            currentOptions = _addOrRemoveAvailableOptionsAtIndex(this);
         }
         // else keep as is.
         else {
@@ -118,28 +118,75 @@ function _rebuildAvailableOptions(that) {
     return optionsArr;
 }
 
-function _spliceAvailableOptions(that) {
+function _addOrRemoveAvailableOptionsAtIndex(that) {
 
-    // current asi value
-    const currentAssignedScore = that.props.attribute.currentAssignedScore
     const options = that.state.options;
+    //selected index
+    const currentlySelectedIndex = that.state.indexOfOptionSelected;
     //starting index
-    const startingIndex = that.state.indexOfOptionSelected;
+    const startingIndex = currentlySelectedIndex + 1;
     //avaiable points
     const availablePoints = that.props.availablePoints;
     //cost of scores
     const pointCosts = that.props.pointCosts;
+    //all available point options
+    const pointDisplayVals = Object.keys(pointCosts);
+    //find the value of points already invested
+    const priceAlreadyPaid = parseInt(pointCosts[options[currentlySelectedIndex].key]);
     
-    for (let i = startingIndex; i < options.length; i++) {
-        let attributeScoreOfCurrentOption = options[i].key;
+    //here we are finding the least expensive option that is NOT in the current options list
+    //and checking if we can afford to add it back in
+    
+    const firstUnavailableOption = parseInt(pointDisplayVals[options.length]);
+    const priceOfFirstUnavailableOption = pointCosts[firstUnavailableOption];
+    const realCostToIncreaseBeyondAvailOpt = firstUnavailableOption ? priceOfFirstUnavailableOption - priceAlreadyPaid : false;
+    
+    // need to add options
+    if ( availablePoints >= realCostToIncreaseBeyondAvailOpt ) {
+        
+        let currentPointKey = firstUnavailableOption;
+        
+        for (let i = options.length; i < pointDisplayVals.length; i++) {
+            
+            let optionHmtl;
 
-        if (availablePoints < pointCosts[attributeScoreOfCurrentOption]) {
-            options.length = i + 1;
-            break;
+            if (Math.sign(availablePoints - (pointCosts[currentPointKey] - priceAlreadyPaid)) != -1) {
+                optionHmtl = (
+                    <option
+                        value={currentPointKey + '-' + that.props.attribute.id}
+                        key={currentPointKey}>{currentPointKey}</option>
+                );
+                options.push(optionHmtl);
+            }
+            
+            currentPointKey++;
         }
+
     }
     
+    const lastOptionIsNotSelectedOption = options.length - 1 != currentlySelectedIndex ? true : false;
+    // here we look to see if the last currently available option costs more than we can afford
+    if (lastOptionIsNotSelectedOption) {
+        
+        const lastAvailableOption = parseInt(options[options.length -1 ].key);
+        const priceOfLastAvailableOption = pointCosts[lastAvailableOption];
+        const realCostOfLastAvailableOption = priceOfLastAvailableOption - priceAlreadyPaid; 
+        
+        // need to remove options
+        if (availablePoints < realCostOfLastAvailableOption) {
+            for (let i = startingIndex; i < options.length; i++) {
+                let attributeScoreOfCurrentOption = options[i].key;
+                
+                if (availablePoints < pointCosts[attributeScoreOfCurrentOption] - priceAlreadyPaid) {
+                    options.length = i;
+                    break;
+                }
+            }
+        }
+    }
+
     return options;
+
 }
 
 // getting the index of the currently selected option
@@ -165,12 +212,13 @@ function _fullRebuildIsNeeded(that) {
     return false;
 }
 
-function _splicingMoreExpensiveOptionsMayBeRequired(that) {
-
+function _moreOrLessOptionsMayBeRequired(that) {
+    
     if (
         that.state.hasValueSelected &&
         that.state.indexOfOptionSelected < 7 &&
-        that.props.availablePoints < 27
+        that.props.availablePoints < 27 &&
+        that.props.attribute.currentAssignedScore != 15
     ) {
         return true;
     }
