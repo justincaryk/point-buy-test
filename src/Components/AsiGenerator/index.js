@@ -67,8 +67,8 @@ class AsiGenerator extends React.Component {
     }
 
     render() {
- 
-        
+
+
 
 
         return (
@@ -83,17 +83,8 @@ class AsiGenerator extends React.Component {
                             <div className="tbl-cell">
                                 <div className="asi-heading">Strength</div>
                                 <div className="asi-val-select-outer">
-                                    {/* <select className="select-css">
-                                        <option value="8" defaultValue>8</option>
-                                        <option value="9" defaultValue>9</option>
-                                        <option value="10" defaultValue>10</option>
-                                        <option value="11" defaultValue>11</option>
-                                        <option value="12" defaultValue>12</option>
-                                        <option value="13" defaultValue>13</option>
-                                        <option value="14" defaultValue>14</option>
-                                        <option value="15" defaultValue>15</option>
-                                    </select> */}
                                     <AttributeInputBlock
+                                        key={this.attributes[0].id}
                                         availablePoints={this.state.pointsRemaining}
                                         pointCosts={this.state.standardPointCost} >
                                     </AttributeInputBlock>
@@ -102,76 +93,51 @@ class AsiGenerator extends React.Component {
                             <div className="tbl-cell">
                                 <div className="asi-heading">Dexterity</div>
                                 <div className="asi-val-select-outer">
-                                    <select className="select-css">
-                                        <option value="8" defaultValue>8</option>
-                                        <option value="9" defaultValue>9</option>
-                                        <option value="10" defaultValue>10</option>
-                                        <option value="11" defaultValue>11</option>
-                                        <option value="12" defaultValue>12</option>
-                                        <option value="13" defaultValue>13</option>
-                                        <option value="14" defaultValue>14</option>
-                                        <option value="15" defaultValue>15</option>
-                                    </select>
+                                    <AttributeInputBlock
+                                        key={this.attributes[1].id}
+                                        availablePoints={this.state.pointsRemaining}
+                                        pointCosts={this.state.standardPointCost} >
+                                    </AttributeInputBlock>
                                 </div>
                             </div>
                             <div className="tbl-cell">
                                 <div className="asi-heading">Constitution</div>
                                 <div className="asi-val-select-outer">
-                                    <select className="select-css">
-                                        <option value="8" defaultValue>8</option>
-                                        <option value="9" defaultValue>9</option>
-                                        <option value="10" defaultValue>10</option>
-                                        <option value="11" defaultValue>11</option>
-                                        <option value="12" defaultValue>12</option>
-                                        <option value="13" defaultValue>13</option>
-                                        <option value="14" defaultValue>14</option>
-                                        <option value="15" defaultValue>15</option>
-                                    </select>
+                                    <AttributeInputBlock
+                                        key={this.attributes[2].id}
+                                        availablePoints={this.state.pointsRemaining}
+                                        pointCosts={this.state.standardPointCost} >
+                                    </AttributeInputBlock>
                                 </div>
                             </div>
                             <div className="tbl-cell">
                                 <div className="asi-heading">Intelligence</div>
                                 <div className="asi-val-select-outer">
-                                    <select className="select-css">
-                                        <option value="8" defaultValue>8</option>
-                                        <option value="9" defaultValue>9</option>
-                                        <option value="10" defaultValue>10</option>
-                                        <option value="11" defaultValue>11</option>
-                                        <option value="12" defaultValue>12</option>
-                                        <option value="13" defaultValue>13</option>
-                                        <option value="14" defaultValue>14</option>
-                                        <option value="15" defaultValue>15</option>
-                                    </select>
+                                    <AttributeInputBlock
+                                        key={this.attributes[3].id}
+                                        availablePoints={this.state.pointsRemaining}
+                                        pointCosts={this.state.standardPointCost} >
+                                    </AttributeInputBlock>
                                 </div>
                             </div>
                             <div className="tbl-cell">
                                 <div className="asi-heading">Wisdom</div>
                                 <div className="asi-val-select-outer">
-                                    <select className="select-css">
-                                        <option value="8" defaultValue>8</option>
-                                        <option value="9" defaultValue>9</option>
-                                        <option value="10" defaultValue>10</option>
-                                        <option value="11" defaultValue>11</option>
-                                        <option value="12" defaultValue>12</option>
-                                        <option value="13" defaultValue>13</option>
-                                        <option value="14" defaultValue>14</option>
-                                        <option value="15" defaultValue>15</option>
-                                    </select>
+                                    <AttributeInputBlock
+                                        key={this.attributes[4].id}
+                                        availablePoints={this.state.pointsRemaining}
+                                        pointCosts={this.state.standardPointCost} >
+                                    </AttributeInputBlock>
                                 </div>
                             </div>
                             <div className="tbl-cell">
                                 <div className="asi-heading">Charisma</div>
                                 <div className="asi-val-select-outer">
-                                    <select className="select-css">
-                                        <option value="8" defaultValue>8</option>
-                                        <option value="9" defaultValue>9</option>
-                                        <option value="10" defaultValue>10</option>
-                                        <option value="11" defaultValue>11</option>
-                                        <option value="12" defaultValue>12</option>
-                                        <option value="13" defaultValue>13</option>
-                                        <option value="14" defaultValue>14</option>
-                                        <option value="15" defaultValue>15</option>
-                                    </select>
+                                    <AttributeInputBlock
+                                        key={this.attributes[5].id}
+                                        availablePoints={this.state.pointsRemaining}
+                                        pointCosts={this.state.standardPointCost} >
+                                    </AttributeInputBlock>
                                 </div>
                             </div>
                         </div>

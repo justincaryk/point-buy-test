@@ -33,7 +33,7 @@ class AttributeInputBlock extends React.Component {
 }
 
 function buildAvailableOptions(that) {
-    debugger;
+    
     let availablePoints = that.state.availablePoints;
     const pointCosts = that.state.pointCosts;
     const pointDisplayVals = Object.keys(pointCosts);
@@ -47,7 +47,7 @@ function buildAvailableOptions(that) {
 
         if (availablePoints - pointCosts[lastPointKey]) {
             optionHmtl = (
-                <option>{lastPointKey}</option>
+                <option value={pointCosts[lastPointKey]} key={pointCosts[lastPointKey]*lastPointKey}>{lastPointKey}</option>
             );
             optionsArr.push(optionHmtl);
         }
