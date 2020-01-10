@@ -119,7 +119,7 @@ class PointBuy extends React.Component {
                     <div className="asi-heading">Points Remaining</div>
                     <div className="asi-points-val-total">{this.state.pointsRemaining} / {this.state.standardPointPool}</div>
                 </div>
-                <div className="">
+                <div>
                     <form onChange={this.handleChanges}>
                         <div className="big-ole-table-outer">
                             <div className="tbl-row">
