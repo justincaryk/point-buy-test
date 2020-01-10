@@ -113,8 +113,11 @@ class StandardArray extends React.Component {
         return this.availOptions;
     }
 
-
     render() {
+        
+        if (this.props.activeMethod != 'StandardArray') {
+            return null;
+        }
 
         return (
             <div className="content-wrap space-sequence-20">

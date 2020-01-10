@@ -35,9 +35,12 @@ class ManualOption extends React.Component {
         }
 
     }
-
-
+   
     render() {
+
+        if (this.props.activeMethod != 'Manual') {
+            return null;
+        }
 
         return (
             <div className="content-wrap">

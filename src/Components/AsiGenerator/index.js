@@ -11,6 +11,7 @@ class AsiGenerator extends React.Component {
         super(props);
 
         this.state = {
+            activeMethod: "PointBuy",
             attributes: [
                 {
                     id: 1,
@@ -81,49 +82,61 @@ class AsiGenerator extends React.Component {
             }
         }
 
+        this.methods = [
+            { id: "PointBuy", name: 'Point Buy'},
+            { id: "StandardArray", name: 'Standard Array'},
+            { id: "Manual", name: 'Manual'}, 
+        ];
+
         this.getUpdatedAttributes = (updatedAttributes) => {
-            
+
             this.setState({
                 attributes: updatedAttributes,
             });
-            
+
+        }
+
+        this.handleMethodChange = event => {
+
+            this.setState({
+                activeMethod: event.target.value,
+            })
+
         }
 
     }
 
     render() {
-        
+
         return (
             <div className="space-sequence-20">
                 <div>
                     <div>
-                        <select className="select-css">
-                            <option>Point Buy</option>
-                            <option>Standard Array</option>
-                            <option>Manual</option>
+                        <select className="select-css" onChange={this.handleMethodChange}>
+                            { this.methods.map(method => {
+                                return (
+                                    <option value={method.id} key={method.id}>{method.name}</option>
+                                )
+                            })}
                         </select>
                     </div>
                 </div>
 
-                {/* <div>
-                    <PointBuy
-                        callbackToGetAttributes={this.getUpdatedAttributes}
-                        attributes={this.state.attributes}></PointBuy>
-                </div> */}
+                <PointBuy
+                    activeMethod={this.state.activeMethod}
+                    callbackToGetAttributes={this.getUpdatedAttributes}
+                    attributes={this.state.attributes}></PointBuy>
 
 
-                {/* <div>
-                    <StandardArray 
-                        callbackToGetAttributes={this.getUpdatedAttributes}
-                        attributes={this.state.attributes}></StandardArray>
-                </div> */}
+                <StandardArray
+                    activeMethod={this.state.activeMethod}
+                    callbackToGetAttributes={this.getUpdatedAttributes}
+                    attributes={this.state.attributes}></StandardArray>
 
-
-                <div>
-                    <ManualOption
-                        callbackToGetAttributes={this.getUpdatedAttributes}
-                        attributes={this.state.attributes}></ManualOption>
-                </div>
+                <ManualOption
+                    activeMethod={this.state.activeMethod}
+                    callbackToGetAttributes={this.getUpdatedAttributes}
+                    attributes={this.state.attributes}></ManualOption>
 
 
                 <div className="content-wrap space-sequence-20">
