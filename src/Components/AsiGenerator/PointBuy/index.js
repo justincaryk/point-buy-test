@@ -112,6 +112,9 @@ class PointBuy extends React.Component {
 
 
     render() {
+        if (this.props.activeMethod != 'PointBuy') {
+            return null;
+        }
 
         return (
             <div className="content-wrap space-sequence-20">
