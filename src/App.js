@@ -7,6 +7,7 @@ function App() {
   return (
     <div className="App">
       <div className="site-wrap">
+        
         <AsiGenerator></AsiGenerator>
       </div>
     </div>
