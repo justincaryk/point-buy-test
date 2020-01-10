@@ -2,6 +2,7 @@ import React from 'react';
 import './AsiGenerator.css';
 
 import PointBuy from './PointBuy';
+import StandardArray from './StandardArray';
 
 class AsiGenerator extends React.Component {
     constructor(props) {
@@ -46,13 +47,43 @@ class AsiGenerator extends React.Component {
                     currentAssignedScore: 8,
                     previousAssignedScore: 8,
                 },
-            ]
+            ],
+            bonuses: {
+                '3': -4,
+                '4': -3,
+                '5': -3,
+                '6': -2,
+                '7': -2,
+                '8': -1,
+                '9': -1,
+                '10': 0,
+                '11': 0,
+                '12': 1,
+                '13': 1,
+                '14': 2,
+                '15': 2,
+                '16': 3,
+                '17': 3,
+                '18': 4,
+                '19': 4,
+                '20': 5,
+                '21': 5,
+                '22': 6,
+                '23': 6,
+                '24': 7,
+                '25': 7,
+                '26': 8,
+                '27': 8,
+                '28': 9,
+                '29': 9,
+                '30': 10,
+            }
         }
 
         this.getUpdatedAttributes = (updatedAttributes) => {
             
             this.setState({
-                attributes: updatedAttributes
+                attributes: updatedAttributes,
             });
             
         }
@@ -60,7 +91,7 @@ class AsiGenerator extends React.Component {
     }
 
     render() {
-
+        
         return (
             <div className="space-sequence-20">
                 <div>
@@ -79,103 +110,38 @@ class AsiGenerator extends React.Component {
                         attributes={this.state.attributes}></PointBuy>
                 </div>
 
+
+                {/* <div>
+                    <StandardArray 
+                        callbackToGetAttributes={this.getUpdatedAttributes}
+                        attributes={this.state.attributes}></StandardArray>
+                </div> */}
+
+
                 <div className="content-wrap space-sequence-20">
                     <div className="big-ole-table-outer">
                         <div className="tbl-row">
-                            <div className="tbl-cell">
-                                <div className="attr-block">
-                                    <div className="attr-title-bar asi-heading">Strength</div>
-                                    <div className="attr-content">
-                                        <div className="attr-row">
-                                            <div className="label-left">Base</div>
-                                            <div className="score">{this.state.attributes[0].currentAssignedScore}</div>
+                            {
+                                this.state.attributes.map(attr => {
+                                    return (
+                                        <div className="tbl-cell">
+                                            <div className="attr-block">
+                                                <div className="attr-title-bar asi-heading">{attr.name}</div>
+                                                <div className="attr-content">
+                                                    <div className="attr-row">
+                                                        <div className="label-left">Base</div>
+                                                        <div className="score">{attr.currentAssignedScore}</div>
+                                                    </div>
+                                                    <div className="attr-row">
+                                                        <div className="label-left">Modifer</div>
+                                                        <div className="score">{_getBonusDisplayVal(this.state.bonuses[attr.currentAssignedScore])}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="attr-row">
-                                            <div className="label-left">Modifer</div>
-                                            <div className="score">{}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="tbl-cell">
-                                <div className="attr-block">
-                                    <div className="attr-title-bar asi-heading">Dexterity</div>
-                                    <div className="attr-content">
-                                        <div className="attr-row">
-                                            <div className="label-left">Base</div>
-                                            <div className="score">{this.state.attributes[1].currentAssignedScore}</div>
-                                        </div>
-                                        <div className="attr-row">
-                                            <div className="label-left">Modifer</div>
-                                            <div className="score">{}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="tbl-cell">
-                                <div className="attr-block">
-                                    <div className="attr-title-bar asi-heading">Constitution</div>
-                                    <div className="attr-content">
-                                        <div className="attr-row">
-                                            <div className="label-left">Base</div>
-                                            <div className="score">{this.state.attributes[2].currentAssignedScore}</div>
-                                        </div>
-                                        <div className="attr-row">
-                                            <div className="label-left">Modifer</div>
-                                            <div className="score">{}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="big-ole-table-outer">
-                    <div className="tbl-row">
-                            <div className="tbl-cell">
-                                <div className="attr-block">
-                                    <div className="attr-title-bar asi-heading">Intelligence</div>
-                                    <div className="attr-content">
-                                        <div className="attr-row">
-                                            <div className="label-left">Base</div>
-                                            <div className="score">{this.state.attributes[3].currentAssignedScore}</div>
-                                        </div>
-                                        <div className="attr-row">
-                                            <div className="label-left">Modifer</div>
-                                            <div className="score">{}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="tbl-cell">
-                                <div className="attr-block">
-                                    <div className="attr-title-bar asi-heading">Wisdom</div>
-                                    <div className="attr-content">
-                                        <div className="attr-row">
-                                            <div className="label-left">Base</div>
-                                            <div className="score">{this.state.attributes[4].currentAssignedScore}</div>
-                                        </div>
-                                        <div className="attr-row">
-                                            <div className="label-left">Modifer</div>
-                                            <div className="score">{}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="tbl-cell">
-                                <div className="attr-block">
-                                    <div className="attr-title-bar asi-heading">Charisma</div>
-                                    <div className="attr-content">
-                                        <div className="attr-row">
-                                            <div className="label-left">Base</div>
-                                            <div className="score">{this.state.attributes[5].currentAssignedScore}</div>
-                                        </div>
-                                        <div className="attr-row">
-                                            <div className="label-left">Modifer</div>
-                                            <div className="score">{}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    );
+                                })
+                            }
                         </div>
                     </div>
                 </div>
@@ -186,7 +152,9 @@ class AsiGenerator extends React.Component {
 }
 
 
-
-
-
 export default AsiGenerator;
+
+
+function _getBonusDisplayVal(val) {
+    return Math.sign(val) == 1 ? `+${val}` : val
+}

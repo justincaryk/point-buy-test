@@ -44,7 +44,7 @@ class PointBuy extends React.Component {
 
         // this.props.attributes = this.props.attributes;
 
-        this.handleChanges = (event) => {
+        this.handleChanges = event => {
             //value format is [ASI_SCORE-ATTR_ID]
             //after splitting this var will be ['ASI_SCORE', 'ATTRIBUTE_ID']
             const eventValArr = event.target.value.split('-');
