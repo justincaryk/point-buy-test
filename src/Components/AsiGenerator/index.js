@@ -3,6 +3,7 @@ import './AsiGenerator.css';
 
 import PointBuy from './PointBuy';
 import StandardArray from './StandardArray';
+import ManualOption from './Manual';
 
 class AsiGenerator extends React.Component {
     constructor(props) {
@@ -104,11 +105,11 @@ class AsiGenerator extends React.Component {
                     </div>
                 </div>
 
-                <div>
+                {/* <div>
                     <PointBuy
                         callbackToGetAttributes={this.getUpdatedAttributes}
                         attributes={this.state.attributes}></PointBuy>
-                </div>
+                </div> */}
 
 
                 {/* <div>
@@ -118,13 +119,20 @@ class AsiGenerator extends React.Component {
                 </div> */}
 
 
+                <div>
+                    <ManualOption
+                        callbackToGetAttributes={this.getUpdatedAttributes}
+                        attributes={this.state.attributes}></ManualOption>
+                </div>
+
+
                 <div className="content-wrap space-sequence-20">
                     <div className="big-ole-table-outer">
                         <div className="tbl-row">
                             {
                                 this.state.attributes.map(attr => {
                                     return (
-                                        <div className="tbl-cell">
+                                        <div className="tbl-cell" key={attr.id}>
                                             <div className="attr-block">
                                                 <div className="attr-title-bar asi-heading">{attr.name}</div>
                                                 <div className="attr-content">
