@@ -17,9 +17,9 @@ Default Point Buy Rules
 
 1. Add Custom Rules
 2. Allow increase of max point buy
-~~3. Add standard array ~~
+3. <del>Add standard array</del>
 4. Add manual input option
-~~5. Add summary of bonuses below~~
+5. <del>Add summary of bonuses below</del>
 6. Add way to toggle between options
 
 
