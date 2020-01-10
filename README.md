@@ -17,9 +17,14 @@ Default Point Buy Rules
 
 1. Add Custom Rules
 2. Allow increase of max point buy
-3. Add standard array
+~~3. Add standard array ~~
 4. Add manual input option
-5. Add summary of bonuses below 
+~~5. Add summary of bonuses below~~
+6. Add way to toggle between options
+
+
+
+
 
 ## made with create-react-app
 
